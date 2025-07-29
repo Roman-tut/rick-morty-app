@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https: //rickandmortyapi.com/api';
+const BASE_URL = 'https://rickandmortyapi.com/api';
 
 export const api = {
   async getCharacters(params?: string) {
