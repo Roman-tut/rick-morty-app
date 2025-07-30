@@ -1,25 +1,28 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../FavoritesButton/favoritesSlice';
+import { RootState } from '../../../../app/store';
 
-export const FavoritesButton = ({ characterId }: { characterId: number }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+interface FavoritesButtonProps {
+  characterId: number;
+}
 
-  useEffect(() => {
-    const favoritesStr = localStorage.getItem('favorites') || '[]';
-    const favorites: number[] = JSON.parse(favoritesStr);
-    setIsFavorite(favorites.includes(characterId));
-  }, [characterId]);
+export const FavoritesButton: React.FC<FavoritesButtonProps> = ({ characterId }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: RootState) => state.favorites);
+  const isFavorite = favorites.includes(characterId);
 
   const handleClick = () => {
-    const favoritesStr = localStorage.getItem('favorites') || '[]';
-    const favorites: number[] = JSON.parse(favoritesStr);
-
-    const newFavorites = isFavorite
-      ? favorites.filter((id) => id !== characterId)
-      : [...favorites, characterId];
-
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    dispatch(toggleFavorite(characterId));
   };
 
-  return <button onClick={handleClick}>{isFavorite ? '★' : '☆'}</button>;
+  return (
+    <button
+      onClick={handleClick}
+      className={`favorite-button ${isFavorite ? 'active' : ''}`}
+      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
+      {isFavorite ? '❤️' : '🤍'}
+    </button>
+  );
 };

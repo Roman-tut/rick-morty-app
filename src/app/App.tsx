@@ -1,14 +1,9 @@
-import AllCharterPage from '../pages/allCharter';
-import { SearchInput } from '../functions/filters/ui/SearchInput';
+import { JSX } from 'react';
+import { AllCharterPage } from '../pages/allCharter/index';
 
-export default function App() {
-  const handleSearch = (query: string) => {
-    console.log('Search query:', query);
-  };
-
+export default function App(): JSX.Element {
   return (
-    <div>
-      <SearchInput onSearch={handleSearch} />
+    <div className="app-background ">
       <AllCharterPage />
     </div>
   );
