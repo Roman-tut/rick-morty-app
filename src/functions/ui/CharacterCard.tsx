@@ -10,7 +10,7 @@ interface CharacterCardProps {
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
   return (
     <div className={styles['character-card']}>
-      <img src={character.image} alt={character.name} className="character-image" />
+      <img src={character.image} alt={character.name} className={styles['character-image']} />
       <div className={styles['character-info']}>
         <h3 className="character-name">{character.name}</h3>
         <p className="character-status">

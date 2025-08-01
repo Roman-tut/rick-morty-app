@@ -1,28 +1,42 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite } from '../FavoritesButton/favoritesSlice';
+import { useNavigate } from 'react-router-dom';
+import { toggleFavorite } from './favoritesSlice';
 import { RootState } from '../../../../app/store';
 
 interface FavoritesButtonProps {
   characterId: number;
+  withNavigation?: boolean;
 }
 
-export const FavoritesButton: React.FC<FavoritesButtonProps> = ({ characterId }) => {
+export const FavoritesButton: React.FC<FavoritesButtonProps> = ({
+  characterId,
+  withNavigation = false,
+}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const favorites = useSelector((state: RootState) => state.favorites);
   const isFavorite = favorites.includes(characterId);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     dispatch(toggleFavorite(characterId));
+
+    if (withNavigation) {
+      setTimeout(() => {
+        navigate('/favorites');
+      }, 300);
+    }
   };
 
   return (
     <button
       onClick={handleClick}
       className={`favorite-button ${isFavorite ? 'active' : ''}`}
-      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
-      {isFavorite ? '❤️' : '🤍'}
+      aria-label={isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}>
+      {isFavorite ? '❤️' : '♡'}
     </button>
   );
 };
