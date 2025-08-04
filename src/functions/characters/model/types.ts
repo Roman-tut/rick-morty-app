@@ -28,3 +28,22 @@ export interface ICharactersResponse {
   };
   results: ICharacter[];
 }
+
+export interface FavoritesButtonProps {
+  characterId: number;
+  withNavigation?: boolean;
+}
+export interface CharacterCardProps {
+  character: ICharacter;
+}
+
+export interface ErrorMessageProps {
+  message: string;
+  className?: string;
+}
+
+export interface SearchInputProps {
+  onSearch: (query: string) => void;
+  debounce?: number;
+  placeholder?: string;
+}

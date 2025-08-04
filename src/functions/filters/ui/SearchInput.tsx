@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { SearchInputProps } from '../../characters//model/types';
 
-export const SearchInput: React.FC<{ onSearch: (query: string) => void; debounce?: number }> = ({
+export const SearchInput: React.FC<SearchInputProps> = ({
   onSearch,
-  debounce = 500,
+  debounce = 300,
+  placeholder = 'Поиск персонажа',
 }) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -18,7 +20,7 @@ export const SearchInput: React.FC<{ onSearch: (query: string) => void; debounce
   return (
     <input
       type="text"
-      placeholder="Search characters..."
+      placeholder="Поиск персонажа"
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       className="search-input"

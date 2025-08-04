@@ -4,11 +4,12 @@ import { ICharacter, ICharactersResponse } from '../../functions/characters/mode
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
 export const api = {
-  async getCharacters(params?: string): Promise<ICharactersResponse> {
+  async getCharacters(name?: string): Promise<ICharactersResponse> {
     try {
-      const response = await axios.get<ICharactersResponse>(
-        `${BASE_URL}/character/${params ? `?${params}` : ''}`,
-      );
+      const params = name ? { name } : {};
+      const response = await axios.get<ICharactersResponse>(`${BASE_URL}/character`, {
+        params,
+      });
       return response.data;
     } catch (error) {
       console.error('Ошибка при загрузке персонажей:', error);

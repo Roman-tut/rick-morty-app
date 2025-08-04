@@ -1,19 +1,40 @@
-.characters-title {
-  grid-column: 1 / -1; /* Занимает все колонки */
-  text-align: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
-  font-size: 2rem;
-  padding-top: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.characters-title {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.search-container {
+  position: relative;
+  margin-left: auto;
+  width: 100%;
+  max-width: 350px;
 }
 
 .characters-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 35px;
   padding: 10px;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
+  height: auto;
 }
+
 .character-link {
   display: contents;
   text-decoration: none;

@@ -26,11 +26,13 @@ export const CharactersPage = () => {
   if (isError) return <ErrorMessage message="Failed to load character" />;
 
   return (
-    <div className="page-container">
-      <h1>{character?.name}</h1>
-      <img src={character?.image} alt={character?.name} className={styles['character-image']} />
-      <p>Status: {character?.status}</p>
-      <FavoritesButton characterId={Number(id)} />
+    <div className={styles['container']}>
+      <div className="page-container">
+        <h1>{character?.name}</h1>
+        <img src={character?.image} alt={character?.name} className={styles['character-image']} />
+        <p>Status: {character?.status}</p>
+        <FavoritesButton characterId={Number(id)} />
+      </div>
     </div>
   );
 };

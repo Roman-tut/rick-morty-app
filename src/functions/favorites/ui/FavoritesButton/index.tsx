@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleFavorite } from './favoritesSlice';
 import { RootState } from '../../../../app/store';
-
-interface FavoritesButtonProps {
-  characterId: number;
-  withNavigation?: boolean;
-}
+import { FavoritesButtonProps } from '../../../../functions/characters/model/types';
 
 export const FavoritesButton: React.FC<FavoritesButtonProps> = ({
   characterId,
