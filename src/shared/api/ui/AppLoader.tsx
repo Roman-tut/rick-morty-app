@@ -4,7 +4,7 @@ export const AppLoader = () => {
   return (
     <div className="loader-container">
       <div className="loader"></div>
-      <p>Loading ...</p>
+      <p>Робот может сыграть симфанию? </p>
     </div>
   );
 };

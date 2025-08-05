@@ -10,6 +10,7 @@ export const api = {
       const response = await axios.get<ICharactersResponse>(`${BASE_URL}/character`, {
         params,
       });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Ошибка при загрузке персонажей:', error);

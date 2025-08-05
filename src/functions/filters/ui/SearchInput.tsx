@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { SearchInputProps } from '../../characters//model/types';
+import styles from '../../../css/characters/CharacterCard.module.css';
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   onSearch,
@@ -18,12 +19,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   }, [inputValue, debounce, onSearch]);
 
   return (
-    <input
-      type="text"
-      placeholder="Поиск персонажа"
-      value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
-      className="search-input"
-    />
+    <div className={styles['search-container']}>
+      <input
+        type="text"
+        placeholder="Поиск персонажа"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        className={styles['search-input']}
+      />
+    </div>
   );
 };

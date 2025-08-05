@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { CharacterCard } from '../../functions/ui/CharacterCard';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../shared/api/rickMorty';
+import { api } from '../../shared/api/apiRequestRickAndMorty';
 import { ICharacter } from '../../functions/characters/model/types';
 import { AppLoader } from '../../shared/api/ui/AppLoader';
 import { ErrorMessage } from '../../shared/api/ui/ErrorMessage';

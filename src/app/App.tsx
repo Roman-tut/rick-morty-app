@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { AllCharterPage } from '../pages/allCharter';
-import { CharactersPage } from '../pages/mainCharacterApp';
+import { CharactersPage } from '../pages/oneCharacterOnPage/index';
 import { FavoritesPage } from '../pages/favorites';
 
 export default function App() {
