@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toggleFavorite } from './favoritesSlice';
-import { RootState } from '../../../../app/store';
-import { FavoritesButtonProps } from '../../../../functions/characters/model/types';
+import { RootState } from '../../../../app/store/store';
+import { FavoritesButtonProps } from '../../../../shared/lib/interface/types';
 
 export const FavoritesButton: React.FC<FavoritesButtonProps> = ({
   characterId,

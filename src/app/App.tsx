@@ -1,20 +1,22 @@
+// оперделяет струкуру приложения( ма
 import { Routes, Route, Link } from 'react-router-dom';
-import { AllCharterPage } from '../pages/allCharter';
-import { CharactersPage } from '../pages/oneCharacterOnPage/index';
-import { FavoritesPage } from '../pages/favorites';
+import { ROUTES } from '../app/constants/routes';
 
 export default function App() {
   return (
     <div className="app-background">
       <nav>
-        <Link to="/">Все персонажи</Link>
-        <Link to="/favorites">Избранное</Link>
+        {ROUTES.filter((route) => route.isNav).map((route) => (
+          <Link key={route.path} to={route.path}>
+            {route.label}
+          </Link>
+        ))}
       </nav>
 
       <Routes>
-        <Route path="/" element={<AllCharterPage />} />
-        <Route path="/characters/:id" element={<CharactersPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        {ROUTES.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
       </Routes>
     </div>
   );

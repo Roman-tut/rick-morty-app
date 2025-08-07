@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ErrorMessageProps } from '../../../functions/characters/model/types';
+import { ErrorMessageProps } from './interface/types';
 
 export const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, className = '' }) => {
   return (

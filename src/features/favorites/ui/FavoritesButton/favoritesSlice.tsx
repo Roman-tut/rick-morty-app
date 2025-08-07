@@ -1,3 +1,6 @@
+//файл управляет состоянием избранных персонажей с помощью редакстолкит
+//создаем редьюсер (логику состояния) для работы с избранными персонажами
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const loadFromLocalStorage = (): number[] => {

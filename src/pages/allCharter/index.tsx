@@ -1,32 +1,31 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../shared/api/apiRequestRickAndMorty';
-import { CharacterCard } from '../../functions/ui/CharacterCard';
-import { AppLoader } from '../../shared/api/ui/AppLoader';
+import { CharacterCard } from '../../features/ui/CharacterCard';
+import { AppLoader } from '../../shared/ui/AppLoader';
 import styles from '../../css/characters/CharacterCard.module.css';
 import { Link } from 'react-router-dom';
-import { ICharactersResponse } from '../../functions/characters/model/types';
-import { ErrorMessage } from '../../shared/api/ui/ErrorMessage';
-import { SearchInput } from '../../functions/filters/ui/SearchInput';
+import { ICharactersResponse } from '../../shared/lib/interface/types';
+import { ErrorMessage } from '../../shared/ui/ErrorMessage';
+import { SearchInput } from '../../features/filters/ui/SearchInput';
 import { useState } from 'react';
+
+const CHARACTERS_QUERY_KEY = 'characters';
 
 export const AllCharterPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { data, isLoading, isError } = useQuery<ICharactersResponse>({
-    queryKey: ['characters', searchQuery],
+  const {
+    data = { results: [] },
+    isLoading,
+    isError,
+  } = useQuery<ICharactersResponse>({
+    queryKey: [CHARACTERS_QUERY_KEY, searchQuery],
     queryFn: () => api.getCharacters(searchQuery),
-    staleTime: 60_000,
   });
-
-  if (data?.results.length === 0) {
-    return <p>Персонажи не найдены. Попробуйте другой запрос.</p>;
-  }
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
   };
-  if (isLoading) return <AppLoader />;
-  if (isError) return <ErrorMessage message="Не удалось загрузить персонажей" />;
 
   return (
     <div className={styles['container']}>
@@ -36,16 +35,23 @@ export const AllCharterPage = () => {
           <SearchInput onSearch={handleSearch} debounce={1000} />
         </div>
       </div>
-      <div className={styles['characters-container']}>
-        {data?.results.map((character) => (
-          <Link
-            key={character.id}
-            to={`/characters/${character.id}`}
-            className={styles['character-link']}>
-            <CharacterCard character={character} />
-          </Link>
-        ))}
-      </div>
+      {isLoading && <AppLoader />}
+      {isError && <ErrorMessage message="Не удалось загрузить персонажей" />}
+      {!isLoading && !isError && data?.results.length === 0 && (
+        <p>Персонажи не найдены. Попробуйте другой запрос.</p>
+      )}
+      {!isLoading && !isError && data?.results.length > 0 && (
+        <div className={styles['characters-container']}>
+          {data?.results.map((character) => (
+            <Link
+              key={character.id}
+              to={`/characters/${character.id}`}
+              className={styles['character-link']}>
+              <CharacterCard character={character} />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

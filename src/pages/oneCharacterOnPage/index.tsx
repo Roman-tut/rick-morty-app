@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../shared/api/apiRequestRickAndMorty';
-import { SearchInput } from '../../functions/filters/ui/SearchInput';
-import { AppLoader } from '../../shared/api/ui/AppLoader';
-import { ErrorMessage } from '../../shared/api/ui/ErrorMessage';
+import { SearchInput } from '../../features/filters/ui/SearchInput';
+import { AppLoader } from '../../shared/ui/AppLoader';
+import { ErrorMessage } from '../../shared/ui/ErrorMessage';
 import { useParams } from 'react-router-dom';
-import { FavoritesButton } from '../../functions/favorites/ui/FavoritesButton/index';
-import { ICharacter } from '../../functions/characters/model/types';
+import { FavoritesButton } from '../../features/favorites/ui/FavoritesButton/index';
+import { ICharacter } from '../../shared/lib/interface/types';
 import styles from '../../css/characters/CharacterCard.module.css';
 
 export const CharactersPage = () => {

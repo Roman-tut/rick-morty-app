@@ -1,13 +1,18 @@
+//файл отображает список избранных персонажей, компонент сочетает работу с редакс(для хранения id
+// и редакс query для загрузки данных о персонажах
+
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
-import { CharacterCard } from '../../functions/ui/CharacterCard';
+import { RootState } from '../../app/store/store';
+import { CharacterCard } from '../../features/ui/CharacterCard';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../shared/api/apiRequestRickAndMorty';
-import { ICharacter } from '../../functions/characters/model/types';
-import { AppLoader } from '../../shared/api/ui/AppLoader';
-import { ErrorMessage } from '../../shared/api/ui/ErrorMessage';
+import { ICharacter } from '../../shared/lib/interface/types';
+import { AppLoader } from '../../shared/ui/AppLoader';
+import { ErrorMessage } from '../../shared/ui/ErrorMessage';
 import styles from '../../css/characters/CharacterCard.module.css';
+
+const ALL_CHARACTERS_QUERY_KEY = 'all-characters';
 
 export const FavoritesPage = () => {
   const favoriteIds = useSelector((state: RootState) => state.favorites);
@@ -17,7 +22,7 @@ export const FavoritesPage = () => {
     isLoading,
     error,
   } = useQuery<ICharacter[]>({
-    queryKey: ['all-characters'],
+    queryKey: [ALL_CHARACTERS_QUERY_KEY],
     queryFn: () => api.getCharacters().then((response) => response.results),
   });
 

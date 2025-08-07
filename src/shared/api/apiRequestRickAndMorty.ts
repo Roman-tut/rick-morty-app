@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ICharacter, ICharactersResponse } from '../../functions/characters/model/types';
+import { ICharacter, ICharactersResponse } from '../lib/interface/types';
 
 const BASE_URL = 'https://rickandmortyapi.com/api';
 

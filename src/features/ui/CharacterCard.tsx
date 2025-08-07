@@ -1,8 +1,8 @@
 import React from 'react';
-import { ICharacter } from '../characters/model/types';
+import { ICharacter } from '../../shared/lib/interface/types';
 import { FavoritesButton } from '../favorites/ui/FavoritesButton/index';
 import styles from '../../css/characters/CharacterCard.module.css';
-import { CharacterCardProps } from '../characters/model/types';
+import { CharacterCardProps } from '../../shared/lib/interface/types';
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
   return (
